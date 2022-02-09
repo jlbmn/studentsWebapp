@@ -1,0 +1,24 @@
+body.body{
+    width:100%;
+    height:100%;
+    font-family:Arial;
+    font-size:16px;
+    background-color: darkblue;
+    color:#f4edde;
+}
+
+i.bi {
+    color:black;
+}
+
+header.image-header{
+    color:white;
+    background-image: url('https://cdn.pixabay.com/photo/2015/09/17/10/30/banner-943866_960_720.jpg');
+    height:30%;
+    border:1px solid black;
+    
+}
+
+nav.navbar{
+    font-size: large;
+}
