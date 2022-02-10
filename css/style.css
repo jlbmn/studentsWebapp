@@ -1,24 +1,36 @@
+/* Main CSS */
+
 body.body{
     width:100%;
     height:100%;
     font-family:Arial;
     font-size:16px;
-    background-color: darkblue;
-    color:#f4edde;
+    background-color: #330000;
+    color:#FFEBEF;
 }
 
-i.bi {
+.navbar-nav {
+    margin: 7.5px -15px !important;
+}
+
+i.bi, #search {
     color:black;
 }
 
+i#home-bi-house {
+    font-size: 1.5em;
+}
+
 header.image-header{
+    height:7em;
     color:white;
-    background-image: url('https://cdn.pixabay.com/photo/2015/09/17/10/30/banner-943866_960_720.jpg');
-    height:30%;
-    border:1px solid black;
-    
+    background-image: url('https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    border: 1px solid transparent;
 }
 
 nav.navbar{
     font-size: large;
 }
+
+/* Put your CSS below */
+
