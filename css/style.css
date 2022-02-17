@@ -5,13 +5,15 @@ body.body{
     height:100%;
     font-family:Arial;
     font-size:16px;
-    background-color: #330000;
-    color:#FFEBEF;
+    /* background-color: #330000; */
+    /* color:#FFEBEF; */
 }
 
+/*
 .navbar-nav {
     margin: 7.5px -15px !important;
 }
+*/
 
 i.bi, #search {
     color:black;
@@ -28,9 +30,22 @@ header.image-header{
     border: 1px solid transparent;
 }
 
+
 nav.navbar{
     font-size: large;
 }
 
 /* Put your CSS below */
 
+.bg-light-blue{
+    background-color: rgb(240, 248, 255);
+  }
+
+.module-wrap-gradient {
+    background: -webkit-linear-gradient(left, #8BBAF5, #0D54AF);
+  }
+
+a.nav-link.link-secondary:hover { 
+    color: #0D54AF;
+    background: #8BBAF5; 
+} 
