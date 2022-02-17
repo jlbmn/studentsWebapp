@@ -13,13 +13,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="comment")
+@Table(name = "comment")
 public class Comment {
-	
+
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id_comment", unique = true, nullable = false)
 	private Integer commentId;
+	@Column(name = "commentaire", nullable = false)
 	private String comment;
+	@Column(name = "date_comment", nullable = false)
 	private Date dateComment;
-	
+
 	@ManyToOne
 	@JoinColumn(name="id_user", nullable = false)
 	private User user;
@@ -27,7 +32,7 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name="id_fiche", nullable = false)
 	private Fiche fiche;
-	
+
 	public Comment() {
 	}
 
@@ -40,9 +45,6 @@ public class Comment {
 		this.fiche = fiche;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id_fiche", unique = true, nullable = false)
 	public Integer getCommentId() {
 		return commentId;
 	}
@@ -51,7 +53,6 @@ public class Comment {
 		this.commentId = commentId;
 	}
 
-	@Column(name = "commentaire", nullable = false)
 	public String getComment() {
 		return comment;
 	}
@@ -60,7 +61,6 @@ public class Comment {
 		this.comment = commeent;
 	}
 
-	@Column(name = "date_comment", nullable = false)
 	public Date getDateComment() {
 		return dateComment;
 	}
@@ -84,6 +84,5 @@ public class Comment {
 	public void setFiche(Fiche fiche) {
 		this.fiche = fiche;
 	}
-	
-	
+
 }
