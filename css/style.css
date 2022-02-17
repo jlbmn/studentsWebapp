@@ -6,7 +6,7 @@ body.body{
     font-family:Arial;
     font-size:16px;
     background-color: #fff;
-    color:#FFEBEF;
+    color:black;
 }
 
 .navbar-nav {
@@ -66,11 +66,11 @@ a.auteur:link{
     text-decoration: none;
 }
 a.auteur:visited{
-    color:#FFEBEF;
+    color:black;
     background-color: transparent;
 }
 a.auteur:hover{
-    color:#FFEBEF;
+    color:black;
     background-color: transparent;
     text-decoration: underline;
 }
@@ -85,13 +85,6 @@ a.auteur:hover{
     float: left;
 }
 
-.btn_download{
-    width:134px;
-}
-
-.download_button{
-    float:right;
-}
 
 .flex-column{
     border: 1px solid;
@@ -103,21 +96,13 @@ a.auteur:hover{
     width: 100%;
 }
 
-.buttons{
-    position: absolute;
-    margin-top: 100px;
-    width: 50%;
-    display:flex;
-    
-}
-
 .d-inline-flex{
-    width:50%;
-    margin-top: 10%;
+    width:100%;
+    margin-top: 5%;
 }
 
 .like_button, .dislike_button{
-    padding-right: 40%;
+    padding-right: 53%;
 }
 
 .btn_like{
@@ -140,6 +125,7 @@ a.auteur:hover{
 }
 
 .btn {
+    background-color: RoyalBlue;
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 12px 16px; /* Some padding */
@@ -153,10 +139,9 @@ a.auteur:hover{
   }
 
   .comments{
-    margin-top: 10%;
-    width:50%;
-    float:right;
-    color: rgb(108, 117, 125)
+    margin-top: 1%;
+    width:75%;
+    color: black
   }
 
 
@@ -237,22 +222,22 @@ iframe {
 }
 
 a.txt1:link {
-    font-family: Poppins-Regular;
+    font-family: Arial;
     font-size: 13px;
     color: #666666;
     line-height: 1.5
 }
 a.txt1:visited {
-    font-family: Poppins-Regular;
+    font-family: Arial;
     font-size: 13px;
     color:#666666;
     line-height: 1.5;
 }
 a.txt1:hover {
-    font-family: Poppins-Regular;
+    font-family: Arial;
     font-size: 13px;
     text-decoration: underline;
-    color:blue;
+    color:#0D54AF;
     line-height: 1.5;
 }
 
@@ -305,7 +290,7 @@ a.txt1:hover {
 
 .bb-form-title {
     display: block;
-    font-family: Poppins-Bold;
+    font-family: Arial;
     font-size: 30px;
     color: #333333;
     line-height: 1.2;
@@ -320,13 +305,13 @@ a.txt1:hover {
     width: 100%;
     position: relative;
     border-bottom: 2px solid #adadad;
-    margin-bottom: 37px
+    margin-bottom: 37px;
 }
 
 .input100 {
-    font-family: Poppins-Regular;
+    font-family: Arial;
     font-size: 15px;
-    color: #555555;
+    color: black;
     line-height: 1.2;
     display: block;
     width: 100%;
@@ -335,7 +320,9 @@ a.txt1:hover {
     padding: 0 5px
 }
 
+
 .bbb-input {
+    color: black;
     position: absolute;
     display: block;
     width: 100%;
@@ -365,7 +352,7 @@ a.txt1:hover {
 }
 
 .bbb-input::after {
-    font-family: Poppins-Regular;
+    font-family: Arial;
     font-size: 15px;
     color: #999999;
     line-height: 1.2;
@@ -475,7 +462,7 @@ a.txt1:hover {
 }
 
 .bb-form-btn {
-    font-family: Poppins-Medium;
+    font-family: Arial;
     font-size: 15px;
     color: #fff;
     line-height: 1.2;
@@ -517,7 +504,7 @@ a.txt1:hover {
     transform: translateY(-50%);
     right: 0px;
     pointer-events: none;
-    font-family: Poppins-Regular;
+    font-family: Arial;
     color: #c80000;
     font-size: 13px;
     line-height: 1.4;
@@ -532,7 +519,7 @@ a.txt1:hover {
 
 .alert-validate::after {
     content: "\f06a";
-    font-family: FontAwesome;
+    font-family: Arial;
     font-size: 16px;
     color: #c80000;
     display: block;
