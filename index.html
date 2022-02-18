@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Add script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#includedContent").load("header.html");
+        });
+    </script>
+
+</head>
+
+<body class="body">
+    <div id="includedContent"> </div>
+
+    <div class="container principal">
+        <div class="left_part">
+            <div class="profile-image">
+                <img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg">
+            </div>
+            <div class="titre">
+                <h3>Titre</h3>
+                <p><b><a class="auteur" href="#">Auteur</a></b>, Date de publication</p><br><br>
+            </div>
+
+            <div class='embed-responsive'>
+                <object class="pdf" data='docs/doc.pdf' type='application/pdf'></object>
+            </div>
+        </div>
+
+        <div class="d-inline-flex">
+            <div class="like_button ">
+                <button class="btn btn-secondary btn_like"><i class="fa fa-thumbs-o-up"></i> J'aime</button>
+            </div>
+            <div class="dislike_button">
+                <button class="btn btn-secondary btn_dislike"><i class="fa fa-thumbs-o-down"></i> Je n'aime pas</button>
+            </div>
+
+        </div>
+
+        <div class="comments">
+
+            <div class="d-flex flex-column">
+                <div class="d-flex flex-row text-left comment-top p-2 bg-white border-bottom px-2">
+                    <div class="d-flex flex-row post-title">
+                        <h3>Commentaire</h3>
+                    </div>
+                </div>
+                <div class="coment-bottom bg-white p-2 px-2">
+
+                    <div class="commented-section mt-2">
+                        <div class="d-flex flex-row  commented-user">
+                            <h5 class="mr-2">Corey oates</h5><span class="dot mb-1"></span><span class="hour">4
+                                hours ago</span>
+                        </div>
+                        <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+                                veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat.</span></div>
+
+                    </div>
+                    <div class="commented-section mt-2">
+                        <div class="d-flex flex-row  commented-user">
+                            <h5 class="mr-2">Samoya Johns</h5><span class="dot mb-1"></span><span class="hour">5
+                                hours ago</span>
+                        </div>
+                        <div class="comment-text-sm"><span>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</span></div>
+
+                    </div>
+                    <div class="commented-section mt-2">
+                        <div class="d-flex flex-row  commented-user">
+                            <h5 class="mr-2">Makhaya andrew</h5><span class="dot mb-1"></span><span class="hour">10
+                                hours ago</span>
+                        </div>
+                        <div class="comment-text-sm"><span>Nunc sed id semper risus in hendrerit gravida rutrum. Non
+                                odio euismod lacinia at quis risus sed. Commodo ullamcorper a lacus vestibulum sed
+                                arcu non odio euismod. Enim facilisis gravida neque convallis a. In mollis nunc sed
+                                id. Adipiscing elit pellentesque habitant morbi tristique senectus et netus.
+                                Ultrices mi tempus imperdiet nulla malesuada pellentesque.</span></div>
+
+                    </div>
+                    <div class="d-flex flex-row add-comment-section mt-4 mb-4"><img
+                            class="img-fluid img-responsive rounded-circle mr-2" src="https://i.imgur.com/qdiP4DB.jpg"
+                            width="38"><input type="text" class="form-control mr-3" placeholder="Add comment"><button
+                            class="btn btn-primary" type="button">Comment</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>
