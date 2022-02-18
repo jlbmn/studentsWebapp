@@ -19,16 +19,26 @@ import javax.persistence.Table;
 @Entity
 @Table(name="fiche")
 public class Fiche {
-	
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id_fiche", unique = true, nullable = false)
 	private Integer ficheId;
+	@Column(name = "title", length = 45, nullable = false)
 	private String title;
 	private String field;
+	@Column(name = "date_publication", nullable = false)
 	private Date publicationDate;
+	@Column(name = "date_update")
 	private Date updateDate;
+	@Column(name = "abstract")
 	private String abstractText;
+	@Column(name = "keyword")
 	private ArrayList<String> keywords;
+	@Column(name = "like")
 	private Integer like;
+	@Column(name = "level", nullable = false)
 	private Integer level;
+	@Column(name = "pdf_file", nullable = false)
 	private String pdfFile;
 	
 	@ManyToOne
@@ -59,9 +69,7 @@ public class Fiche {
 		this.comments = comments;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id_fiche", unique = true, nullable = false)
+	
 	public Integer getFicheId() {
 		return ficheId;
 	}
@@ -70,7 +78,7 @@ public class Fiche {
 		this.ficheId = ficheId;
 	}
 
-	@Column(name = "title", length = 45, nullable = false)
+	
 	public String getTitle() {
 		return title;
 	}
@@ -95,7 +103,7 @@ public class Fiche {
 		this.comments = comments;
 	}
 
-	@Column(name = "date_publication", nullable = false)
+	
 	public Date getPublicationDate() {
 		return publicationDate;
 	}
@@ -104,7 +112,7 @@ public class Fiche {
 		this.publicationDate = publicationDate;
 	}
 
-	@Column(name = "date_update")
+	
 	public Date getUpdateDate() {
 		return updateDate;
 	}
@@ -113,7 +121,7 @@ public class Fiche {
 		this.updateDate = updateDate;
 	}
 
-	@Column(name = "abstract")
+	
 	public String getAbstractText() {
 		return abstractText;
 	}
@@ -130,7 +138,7 @@ public class Fiche {
 		this.keywords = keywords;
 	}
 
-	@Column(name = "like")
+	
 	public Integer getLike() {
 		return like;
 	}
@@ -139,7 +147,7 @@ public class Fiche {
 		this.like = like;
 	}
 
-	@Column(name = "level", nullable = false)
+	
 	public Integer getLevel() {
 		return level;
 	}
@@ -148,7 +156,7 @@ public class Fiche {
 		this.level = level;
 	}
 
-	@Column(name = "pdf_file", nullable = false)
+	
 	public String getPdfFile() {
 		return pdfFile;
 	}

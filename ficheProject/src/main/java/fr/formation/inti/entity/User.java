@@ -17,18 +17,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
-	
+
+	@Id
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "id_user", unique = true, nullable = false)
 	private Integer userId;
+	@Column(name = "email", length = 45, nullable = false)
 	private String email;
+	@Column(name = "pseudo", length = 45, nullable = false)
 	private String pseudo;
+	@Column(name = "password", length = 45, nullable = false)
 	private String password;
+	@Column(name = "subscribe_date", nullable = false)
 	private Date subscribeDate;
+	@Column(name = "nb_publication")
 	private Integer publicationNb;
+	@Column(name = "profile_pic")
 	private String profilPic;
-	
-	@OneToMany(mappedBy="user", targetEntity = Fiche.class)
+
+	@OneToMany(mappedBy = "user", targetEntity = Fiche.class)
 	private Set<Fiche> fiches = new HashSet<Fiche>();
 	
 	@OneToMany(mappedBy="user", targetEntity = Comment.class)
@@ -39,7 +48,7 @@ public class User {
 				joinColumns = {@JoinColumn(name="id_user")},
 				inverseJoinColumns = {@JoinColumn(name="id_role")})
 	private Set<Role> roles = new HashSet<Role>();
-	
+
 	public User() {
 	}
 
@@ -57,9 +66,6 @@ public class User {
 		this.comments = comments;
 	}
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id_user", unique = true, nullable = false)
 	public Integer getUserId() {
 		return userId;
 	}
@@ -68,7 +74,6 @@ public class User {
 		this.userId = userId;
 	}
 
-	@Column(name = "email", length = 45, nullable = false)
 	public String getEmail() {
 		return email;
 	}
@@ -77,7 +82,6 @@ public class User {
 		this.email = email;
 	}
 
-	@Column(name = "pseudo", length = 45, nullable = false)
 	public String getPseudo() {
 		return pseudo;
 	}
@@ -85,8 +89,7 @@ public class User {
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
-	
-	@Column(name = "password", length = 45, nullable = false)
+
 	public String getPassword() {
 		return password;
 	}
@@ -95,7 +98,6 @@ public class User {
 		this.password = password;
 	}
 
-	@Column(name = "subscribe_date", nullable = false)
 	public Date getSubscribeDate() {
 		return subscribeDate;
 	}
@@ -104,7 +106,6 @@ public class User {
 		this.subscribeDate = subscribeDate;
 	}
 
-	@Column(name = "nb_publication")
 	public Integer getPublicationNb() {
 		return publicationNb;
 	}
@@ -113,7 +114,6 @@ public class User {
 		this.publicationNb = publicationNb;
 	}
 
-	@Column(name = "profile_pic")
 	public String getProfilPic() {
 		return profilPic;
 	}
@@ -137,7 +137,5 @@ public class User {
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
 	}
-	
-	
 
 }
