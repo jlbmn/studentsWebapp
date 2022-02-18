@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+</head>
+<body>
+	<h1!>Bonjour ! </h1>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header"></div>
+<head>
+  <title>Index</title>
+</head>
+
+    <div class="container">
+
+      <!-- search form -->
+        <div>
+          <div class="mx-auto m-5 p-4 rounded-pill text-white border" style="width: 80%; background: #0D54AF;">
+            <h2 class="text-center">Trouvez votre fiche de révision...</h2>
+            <form class="form-inline ">
+              <div class="input-group">
+                <input type="text" class="form-control form-control-lg rounded-pill m-1" placeholder="Entrez une matière...">
+                <button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-search"></i></button>
+              </div>
+            </form>
+          </div>
+        <div style="height: 2em;"></div>
+        </div>
+
+        <!-- nav with javascript behavior -->
+          <div class="mt-5 rounded" >
+            <ul class="nav nav-tabs nav-fill fs-5 rounded " id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <a class="nav-link active link-secondary" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" role="tab" aria-controls="home" aria-selected="true">Top des fiches....</a>
+              </li>
+              <li class="nav-item" role="presentation">
+                <a class="nav-link link-secondary" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" role="tab" aria-controls="profile" aria-selected="false">Top des auteurs...</a>
+              </li>
+            </ul>
+
+            <div class="tab-content m-2 p-2" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <div class="d-grid gap-3">
+                  <div class="module-wrap-gradient">
+                  <div class="pb-1">
+                    <div class="grid bg-light-blue">
+                      <div class="row align-items-center text-center">
+                        <div class="col">Titre </div>
+                        <div class="col">Matière </div>
+                        <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
+                        <div class="col">Auteur </div>
+                        <div class="col">Abstract </div>
+                        <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="module-wrap-gradient">
+                    <div class="pb-1">
+                      <div class="grid bg-light-blue">
+                        <div class="row align-items-center text-center">
+                          <div class="col">Titre </div>
+                          <div class="col">Matière </div>
+                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
+                          <div class="col">Auteur </div>
+                          <div class="col">Abstract </div>
+                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button></div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="d-grid gap-3">
+                  <div class="module-wrap-gradient">
+                    <div class="pb-1">
+                      <div class="grid bg-light-blue">
+                        <div class="row align-items-center text-center">
+                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
+                          <div class="col">Pseudo</div>
+                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
+                          <div class="col">Nb publications </div>
+                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                  <div class="module-wrap-gradient">
+                    <div class="pb-1">
+                      <div class="grid bg-light-blue">
+                        <div class="row align-items-center text-center">
+                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
+                          <div class="col">Pseudo</div>
+                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
+                          <div class="col">Nb publications </div>
+                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+      </div>
+
+    </div>
+
+</html>
