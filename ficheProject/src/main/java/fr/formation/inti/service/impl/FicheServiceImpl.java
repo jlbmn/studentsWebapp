@@ -45,6 +45,21 @@ public class FicheServiceImpl implements FicheService{
 	public Optional<Fiche> findById(Integer id) {
 		return ficheDao.findById(id);
 	}
+
+	@Override
+	public Integer likeFiche(Fiche fiche) {
+		Integer like = fiche.getLike()+1;
+		fiche.setLike(like);
+		return like;
+	}
+
+	@Override
+	public Integer dislikeFiche(Fiche fiche) {
+		Integer like = fiche.getLike()-1;
+		fiche.setLike(like);
+		return like;
+	}
+
 	
 	
 }
