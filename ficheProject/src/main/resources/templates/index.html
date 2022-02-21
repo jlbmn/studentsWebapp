@@ -13,7 +13,7 @@
         <div>
           <div class="mx-auto m-5 p-4 rounded-pill text-white border" style="width: 80%; background: #0D54AF;">
             <h2 class="text-center">Trouvez votre fiche de révision...</h2>
-            <form class="form-inline ">
+            <form class="form-inline" action="/results" method="post">
               <div class="input-group">
                 <input type="text" class="form-control form-control-lg rounded-pill m-1" placeholder="Entrez une matière...">
                 <button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-search"></i></button>
@@ -46,7 +46,11 @@
                         <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
                         <div class="col">Auteur </div>
                         <div class="col">Abstract </div>
-                        <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                        <div class="col">
+							<form action="/displayPdf" method="get">
+                          		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
+                        	</form>
+						</div>
                       </div>
                     </div>
                   </div>
@@ -60,7 +64,11 @@
                           <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
                           <div class="col">Auteur </div>
                           <div class="col">Abstract </div>
-                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button></div>
+                          <div class="col">
+                          	<form action="/displayPdf" method="get">
+                          		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
+                          	</form>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -78,7 +86,9 @@
                           <div class="col">Pseudo</div>
                           <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
                           <div class="col">Nb publications </div>
-                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                          <div class="col">
+                          	<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -91,7 +101,9 @@
                           <div class="col">Pseudo</div>
                           <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
                           <div class="col">Nb publications </div>
-                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button></div>
+                          <div class="col">
+                          	<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button>
+                          </div>
                         </div>
                       </div>
                     </div>
