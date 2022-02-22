@@ -45,5 +45,9 @@ public class UserServiceImpl implements UserService {
 	public Optional<User> findById(Integer id) {
 		return userDao.findById(id);
 	}
-
+	
+	@Override
+	public Optional<User> findByEmailAndPassword(String email, String password) {
+		return userDao.findByEmailAndPassword(email, password);
+	}
 }
