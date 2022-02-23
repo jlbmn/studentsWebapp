@@ -23,4 +23,7 @@ public interface FicheService {
 	
 	Integer dislikeFiche(Fiche fiche);
 	
+	List<Fiche> findByAuthor(String author);
+	
+	List<Fiche> findByField(String field);
 }

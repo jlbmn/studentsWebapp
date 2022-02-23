@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import java.util.Set;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +29,7 @@ import fr.formation.inti.entity.Fiche;
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.FicheService;
 import fr.formation.inti.service.UserService;
+import fr.formation.inti.dao.FicheDao;
 
 @Controller
 public class IndexController {
@@ -37,6 +41,9 @@ public class IndexController {
 	
 	@Autowired
 	private FicheService ficheService;
+	
+	@Autowired
+	FicheDao ficheDao;
 	
 	/**
 	 * acceder a la page principale du projet 
@@ -78,6 +85,34 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
 	public String postResults(Model model) {
+		List<Fiche> list = ficheService.findAll();
+		Set<User> listAuthor = ficheDao.listAuthors();
+		Set<String> listFields = ficheDao.listFields();
+		model.addAttribute("list", list);
+		model.addAttribute("listAuthors", listAuthor);
+		model.addAttribute("listFields", listFields);
+		return "results";
+	}
+	
+	@RequestMapping(value= "/listFilteredAuthor", method=RequestMethod.POST)
+	public String listCustomerByAuthor(Model model,@RequestParam String author, @RequestParam String field) {
+		
+		
+//		List<Fiche> listAll= ficheService.findAll();
+		List<Fiche> listAuthor = ficheService.findByAuthor(author);
+//		List<Fiche> listField = ficheService.findByField(field);
+		model.addAttribute("list", listAuthor);
+//		model.addAttribute("list", listField);
+		
+		return "results";
+	}
+	
+	//mettre un bouton pour le filtrage par matiere
+	@RequestMapping(value= "/listFilteredField", method=RequestMethod.POST)
+	public String listCustomerByField(Model model,@RequestParam String field) {
+
+		List<Fiche> list = ficheService.findByField(field);
+		model.addAttribute("list", list);
 		return "results";
 	}
 	

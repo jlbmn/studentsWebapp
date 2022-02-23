@@ -44,8 +44,16 @@ nav.navbar{
 .module-wrap-gradient {
     background: -webkit-linear-gradient(left, #8BBAF5, #0D54AF);
   }
+  
+  table.table-bordered > thead > tr > th{
+  border: -webkit-linear-gradient(left, #8BBAF5, #0D54AF);
+}
 
 a.nav-link.link-secondary:hover { 
     color: #0D54AF;
     background: #8BBAF5; 
 } 
+
+ul{
+	list-style-type: none;
+}
