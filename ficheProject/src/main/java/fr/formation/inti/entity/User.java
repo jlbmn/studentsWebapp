@@ -138,4 +138,11 @@ public class User {
 		this.comments = comments;
 	}
 
+	@Override
+	public String toString() {
+		return  pseudo ;
+	}
+	
+	
+
 }
