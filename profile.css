@@ -1,0 +1,162 @@
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    font-size: 16px;
+    background-color: rgb(62, 170, 202);
+    font-family: arial;
+    text-align: justify;
+    /* background-color: #330000; */
+    /* color:#FFEBEF; */
+}
+
+.middle {
+    position: relative;
+    bottom: 350px;
+}
+
+.avatar-img {
+    width: 20%;
+    border-radius: 50%;
+    position: relative;
+    right: 35%;
+    top: 2%
+}
+
+.avatar {
+    margin-left: 2%;
+    width: 20%;
+    right: 35%;
+    top: 2%
+}
+
+.file {
+    margin-left: 2%;
+    width: 20%;
+    right: 30%;
+    top: 2%
+}
+
+
+/*
+.navbar-nav {
+    margin: 7.5px -15px !important;
+}
+*/
+
+i.bi,
+#search {
+    color: black;
+}
+
+.left {
+    background-color: white;
+    width: 115%;
+    margin-left: -7%;
+    left: 30%;
+}
+
+.user {
+    position: relative;
+    left: 7%;
+}
+
+i#home-bi-house {
+    font-size: 1.5em;
+}
+
+header.image-header {
+    height: 7em;
+    color: white;
+    background-image: url('https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    border: 1px solid transparent;
+}
+
+nav.navbar {
+    font-size: large;
+}
+
+
+/* Put your CSS below */
+
+.bg-light-blue {
+    background-color: rgb(240, 248, 255);
+}
+
+.module-wrap-gradient {
+    background: -webkit-linear-gradient(left, #8BBAF5, #0D54AF);
+}
+
+a.nav-link.link-secondary:hover {
+    color: #0D54AF;
+    background: #8BBAF5;
+}
+
+ul {
+    list-style-type: none;
+    width: 50%;
+    display: inline;
+}
+
+li {
+    display: inline;
+}
+
+nav nav-tabs nav-fill fs-5 rounded {
+    display: inline;
+}
+
+nav-link active link-secondary {
+    display: inline;
+}
+
+.right {
+    position: relative;
+    left: -5.5%;
+    top: 50%;
+    width: 31.5%;
+    background-color: aquamarine;
+}
+
+.big-label {
+    position: relative;
+    right: 14.5%;
+}
+
+.description {
+    background-color: aquamarine;
+    border: none;
+}
+
+.list-group {
+    background-color: #248a4b;
+}
+
+.pull-left {
+    background-color: #278bb3;
+    width: 1%;
+}
+
+.middle {
+    width: 68%;
+    left: 27%;
+    background-color: green;
+    bottom: 750px;
+}
+
+.profile-button {
+    border: none;
+    color: rgb(39, 131, 59);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px;
+    cursor: pointer;
+}
+
+.profile-button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
