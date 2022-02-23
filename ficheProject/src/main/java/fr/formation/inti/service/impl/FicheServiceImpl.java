@@ -3,6 +3,10 @@ package fr.formation.inti.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,9 @@ import fr.formation.inti.service.FicheService;
 @Service
 public class FicheServiceImpl implements FicheService{
 
+	@PersistenceContext
+	private EntityManager entityManager;
+	
 	@Autowired
 	private FicheDao ficheDao;
 	
@@ -58,6 +65,20 @@ public class FicheServiceImpl implements FicheService{
 		Integer like = fiche.getLike()-1;
 		fiche.setLike(like);
 		return like;
+	}
+
+	@Override
+	public List<Fiche> findByAuthor(String author) {
+		String hql = "SELECT e FROM Fiche e WHERE e.user.pseudo like '%"+author+"%'";
+		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Fiche> findByField(String field) {
+		String hql = "SELECT e FROM Fiche e WHERE e.field like '%"+field+"%'";
+		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
+		return query.getResultList();
 	}
 
 	

@@ -24,7 +24,8 @@ public class Fiche {
 	@Column(name = "id_fiche", unique = true, nullable = false)
 	private Integer ficheId;
 	@Column(name = "title", length = 45, nullable = false)
-	private String title;
+	private String title;	
+	@Column(name = "field", nullable = false)
 	private String field;
 	@Column(name = "date_publication", nullable = false)
 	private Date publicationDate;
@@ -39,7 +40,7 @@ public class Fiche {
 	@Column(name = "level", nullable = false)
 	private Integer level;
 	@Column(name = "pdf_file", nullable = false)
-	private String pdfFile;
+	private String pdfFile;	
 	
 	@ManyToOne
 	@JoinColumn(name="id_user", nullable = false)
