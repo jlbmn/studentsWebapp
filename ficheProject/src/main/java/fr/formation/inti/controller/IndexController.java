@@ -1,25 +1,46 @@
 package fr.formation.inti.controller;
 
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import fr.formation.inti.dao.FicheDao;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import fr.formation.inti.entity.Fiche;
 import fr.formation.inti.entity.User;
 import fr.formation.inti.service.FicheService;
+import fr.formation.inti.service.UserService;
+import fr.formation.inti.dao.FicheDao;
 
 @Controller
 public class IndexController {
 	
+	private Log log = LogFactory.getLog(IndexController.class);
+	
 	@Autowired
-	FicheService ficheService;
+	private UserService userService ; 
+	
+	@Autowired
+	private FicheService ficheService;
 	
 	@Autowired
 	FicheDao ficheDao;
@@ -30,7 +51,19 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
-	public String welcome(Model model) {
+	public String welcome(Model model, @RequestParam("message") Optional<String> message) {
+		log.info("--------- in index GET ---------");
+		
+		// check if request param "message" exists
+		if(message.isPresent()) {
+			model.addAttribute("message", message.get());
+		}
+		
+		List<Fiche> fiches = ficheService.findAll();
+		model.addAttribute("fiches", fiches);
+		List<User> users = userService.findAll();
+		model.addAttribute("authors", users);
+		
 		return "index";
 	}
 	
@@ -89,7 +122,9 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/displayPdf", method = RequestMethod.GET)
-	public String displayPdf(Model model) {
+	public String displayPdf(Model model, @ModelAttribute Fiche fiche) {
+		model.addAttribute("fiche", fiche);
+		log.info(fiche.getTitle());
 		return "displayPdf";
 	}
 	
@@ -120,7 +155,14 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String getLoginPage(Model model) {
+	public String getLoginPage(Model model,
+			@RequestParam("message") Optional<String> message) {
+		
+		// check if request param "message" exists
+		if(message.isPresent()) {
+			model.addAttribute("message", "Vous êtes bien déconnecté!");
+		}
+		
 		return "login";
 	}
 	
@@ -130,10 +172,46 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String postCheckLogin(Model model) {
-		return "login";
+	public ModelAndView postCheckLogin(Model model, 
+			@ModelAttribute User user) {
+		log.info("--------- in login POST ---------");
+		ModelAndView modelAndView = new ModelAndView();
+		Optional<User> u = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
+		if(!u.isPresent()) {
+			log.info("--------- User is not present ---------");
+			modelAndView.setViewName("login");
+			return modelAndView;
+		}
+		log.info("--------- User is present, redirect to index  ---------");
+		modelAndView.addObject("user", u.get());
+		modelAndView.addObject("message", "Bienvenue "+ u.get().getPseudo());
+		modelAndView.setViewName("redirect:/index");
+		return modelAndView;
 	}
-	
-	
+
+	/**
+	 * logout
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public ModelAndView logout (Model model, 
+    		HttpServletRequest request, 
+    		HttpServletResponse response,
+    		RedirectAttributes redirectAttributes) {
+    	log.info("--------- logout GET  ---------");
+    	ModelAndView modelAndView = new ModelAndView();
+    	modelAndView.setViewName("redirect:/login");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+        	log.info("--------- close user session ---------");
+        	modelAndView.addObject("message", "logout");
+            new SecurityContextLogoutHandler().logout(request, response, auth);
+        }
+        return modelAndView;
+    }
+
 	
 }

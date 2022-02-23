@@ -8,6 +8,8 @@
 </head>
 
     <div class="container">
+    
+    	<h3 th:utext="${message}" class="text-primary m-2"></h3>
 
       <!-- search form -->
         <div>
@@ -35,19 +37,41 @@
             </ul>
 
             <div class="tab-content m-2 p-2" id="myTabContent">
-              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <div class="d-grid gap-3">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
+                <div class="d-grid gap-3 m-2" th:each="fiche:${fiches}">
                   <div class="module-wrap-gradient">
-                  <div class="pb-1">
+                  <div class="pb-1" >
                     <div class="grid bg-light-blue">
-                      <div class="row align-items-center text-center">
-                        <div class="col">Titre </div>
-                        <div class="col">Matière </div>
-                        <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
-                        <div class="col">Auteur </div>
-                        <div class="col">Abstract </div>
+                      <div class="row align-items-center text-center" >
+                        <div class="col" th:utext="${fiche.title}"> </div>
+                        <div class="col" th:utext="${fiche.field}"> </div>
+                        <div class="col"> <span th:utext="${fiche.like}"></span> <i class="bi bi-hand-thumbs-up"></i></div>
+                        <div class="col" th:utext="${fiche.user.pseudo}"> </div>
+                        <div class="col" th:utext="${fiche.abstractText}">
+                        
+<!-- <!-- 						link to abstract modal --> -->
+<!-- 						<a href="#" data-bs-toggle="modal" data-bs-target="#staticBackdrop" > -->
+<!-- 						  Abstract -->
+<!-- 						</a> -->
+<!-- <!-- 						Modal --> -->
+<!-- 						<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"> -->
+<!-- 						  <div class="modal-dialog"> -->
+<!-- 						    <div class="modal-content"> -->
+<!-- 						      <div class="modal-header" > -->
+<!-- 						        <h5 class="modal-title" id="staticBackdropLabel" th:utext="${fiche.title}"></h5> -->
+<!-- 						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+<!-- 						      </div> -->
+<!-- 						      <div class="modal-body"><span th:utext="${fiche.abstractText}"></span> </div> -->
+<!-- 						      <div class="modal-footer"> -->
+<!-- 						        <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button> -->
+<!-- 						      </div> -->
+<!-- 						    </div> -->
+<!-- 						  </div> -->
+<!-- 						</div> -->
+						
+                        </div>
                         <div class="col">
-							<form action="/displayPdf" method="get">
+							<form action="/displayPdf" method="get" th:object="${fiche}">
                           		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
                         	</form>
 						</div>
@@ -55,37 +79,21 @@
                     </div>
                   </div>
                   </div>
-                  <div class="module-wrap-gradient">
-                    <div class="pb-1">
-                      <div class="grid bg-light-blue">
-                        <div class="row align-items-center text-center">
-                          <div class="col">Titre </div>
-                          <div class="col">Matière </div>
-                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
-                          <div class="col">Auteur </div>
-                          <div class="col">Abstract </div>
-                          <div class="col">
-                          	<form action="/displayPdf" method="get">
-                          		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
-                          	</form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
                 </div>
-              </div>
+                </div>
+              
+              
 
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <div class="d-grid gap-3">
+                <div class="d-grid gap-3 m-2" th:each="author:${authors}">
                   <div class="module-wrap-gradient">
                     <div class="pb-1">
                       <div class="grid bg-light-blue">
                         <div class="row align-items-center text-center">
-                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
-                          <div class="col">Pseudo</div>
-                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
-                          <div class="col">Nb publications </div>
+                          <div class="col"><span th:utext="${author.profilPic}"></span><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
+                          <div class="col" th:utext="${author.pseudo}"></div>
+                          <div class="col"><span>(nb likes)</span> <i class="bi bi-hand-thumbs-up"></i></div>
+                          <div class="col"><span th:utext="${author.publicationNb}"></span> fiches publiées</div>
                           <div class="col">
                           	<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button>
                           </div>
@@ -93,21 +101,7 @@
                       </div>
                     </div>
                     </div>
-                  <div class="module-wrap-gradient">
-                    <div class="pb-1">
-                      <div class="grid bg-light-blue">
-                        <div class="row align-items-center text-center">
-                          <div class="col"><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
-                          <div class="col">Pseudo</div>
-                          <div class="col">Nb likes <i class="bi bi-hand-thumbs-up"></i></div>
-                          <div class="col">Nb publications </div>
-                          <div class="col">
-                          	<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
+                  
                 </div>
             </div>
           </div>

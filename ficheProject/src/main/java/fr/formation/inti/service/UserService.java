@@ -18,5 +18,6 @@ public interface UserService {
 	void deleteUser(Integer id);
 
 	Optional<User> findById(Integer id);
-
+	
+	Optional<User> findByEmailAndPassword(String email, String password);
 }
