@@ -1,0 +1,125 @@
+body {
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    font-size: 16px;
+    font-family: arial;
+    text-align: justify;
+    /* background-color: #330000; */
+    /* color:#FFEBEF; */
+}
+
+.middle {
+    width:60%;
+    vertical-align:top;
+}
+
+.container section{
+	display: inline-block;
+}
+
+.avatar-img {
+    width: 20%;
+    border-radius: 50%;
+}
+
+
+.file {
+    margin-left: 2%;
+    width: 20%;
+    right: 30%;
+    top: 2%
+}
+
+
+/*
+.navbar-nav {
+    margin: 7.5px -15px !important;
+}
+*/
+
+i.bi,
+#search {
+    color: black;
+}
+
+.left {
+    width: 35%;
+}
+
+i#home-bi-house {
+    font-size: 1.5em;
+}
+
+header.image-header {
+    height: 7em;
+    color: white;
+    background-image: url('https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    border: 1px solid transparent;
+}
+
+nav.navbar {
+    font-size: large;
+}
+
+
+/* Put your CSS below */
+
+.bg-light-blue {
+    background-color: rgb(240, 248, 255);
+}
+
+.module-wrap-gradient {
+    background: -webkit-linear-gradient(left, #8BBAF5, #0D54AF);
+}
+
+a.nav-link.link-secondary:hover {
+    color: #0D54AF;
+    background: #8BBAF5;
+}
+
+ul {
+    list-style-type: none;
+    width: 50%;
+    display: inline;
+}
+
+li {
+    display: inline;
+}
+
+nav nav-tabs nav-fill fs-5 rounded {
+    display: inline;
+}
+
+nav-link active link-secondary {
+    display: inline;
+}
+
+.big-label {
+    position: relative;
+    right: 14.5%;
+}
+
+.description {
+    border: none;
+}
+
+.list-group {
+    background-color: #248a4b;
+}
+
+
+.profile-button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    background-color:#8BBAF5;
+}
+
+.profile-button:hover {
+    background-color: #0D54AF;
+    color: white;
+}

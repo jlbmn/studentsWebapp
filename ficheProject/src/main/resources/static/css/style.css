@@ -57,3 +57,8 @@ a.nav-link.link-secondary:hover {
 ul{
 	list-style-type: none;
 }
+
+.avatar-img {
+    width: 20%;
+    border-radius: 50%;
+}

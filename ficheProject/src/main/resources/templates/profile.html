@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header"></div>
+<head>
+<title>Profile</title>
+<!-- customized CSS for profile page -->
+<link th:href="@{css/style.css}" rel="stylesheet">
+<link th:href="@{css/profile.css}" rel="stylesheet">
+</head>
+
+    <div class="container ">
+    	
+        <section class="left my-2 mx-2 bg-light rounded border">
+        	<div class="p-2 text-center">
+            
+            <figure>
+                <img th:src="${author.profilPic}" alt="image avatar" class="avatar-img">
+            </figure>
+            <h1 class="user my-3" th:utext="${author.pseudo}">Utilisateur</h1>
+            
+            <label for="avatar" class="avatar my-3">Choisissez une photo de profil:</label>
+            <input type="file" class="file">
+            
+            <ul class="list-group my-3 mx-auto">
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Score de fiches : </strong></span> <span th:utext="${nbLikes}">0</span></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Likes : </strong></span> 0</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Nombre de post : </strong></span> <span th:utext="${author.publicationNb}">0</span></li>
+            </ul>
+            
+			<div class="my-3 mx-auto text-center">
+                <button class="profile-button mx-1 btn-lg">
+                    <i class="bi bi-hand-thumbs-up-fill"></i>
+                </button>
+                <button class="profile-button mx-1 btn-lg">
+                <i class="bi bi-send"></i>
+            </button>
+                <button class="profile-button mx-1 btn-lg">
+            <i class="bi bi-share-fill"></i>
+        </button>
+        </div>
+        </div>
+        
+        <div class="description p-2 text-center my-3 bg-light rounded border-top">
+        	<h2>Description</h2><br>
+            <label for="description">
+                <textarea class="description"name="description" id="decription" cols="35" rows="6">Lorem Ipsum</textarea>
+            </label>
+        </div>
+        
+        </section>
+
+        <section class="middle m-2">
+				
+		<!-- nav with javascript behavior -->
+          <div class="rounded" >
+			<h3 class="text-center m-2">Top des fiches</h3>
+
+            <div class="tab-content p-2">
+              <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab" >
+                <div class="d-grid gap-3 m-2" th:each="fiche:${author.getFiches()}">
+                  <div class="module-wrap-gradient">
+                  <div class="pb-1" >
+                    <div class="grid bg-light-blue">
+                      <div class="row align-items-center text-center" >
+                        <div class="col" th:utext="${fiche.title}"> </div>
+                        <div class="col" th:utext="${fiche.field}"> </div>
+                        <div class="col"> <span th:utext="${fiche.like}"></span> <i class="bi bi-hand-thumbs-up"></i></div>
+                        <div class="col" th:utext="${fiche.user.pseudo}"> </div>
+                        <div class="col" th:utext="${fiche.abstractText}">
+                        </div>
+                        <div class="col" >
+							<form action="/displayPdf" method="post" th:action="@{/displayPdf}" th:object="${fiche}">
+								<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+                          		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
+                        	</form>
+						</div>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+                </div>
+              
+          		</div>
+			</div>
+        </section>
+    </div>
+
+</html>

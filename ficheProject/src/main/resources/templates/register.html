@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header"></div>
+<head>
+    <link th:href="@{/css/register.css}" rel="stylesheet">
+    <script src="script/register.js"></script>
+    <title>Inscription</title>
+</head>
+
+    <div class="limit">
+        <div class="login-container">
+            <div class="bb-login">
+                <form class="bb-form validate-form" th:action="@{/register}" th:object="${user}" method="post"> 
+                	<span class="bb-form-title p-b-26"> Inscription </span>
+					<span class="bb-form-title p-b-48"> <i class="mdi mdi-symfony"></i> </span>
+                    <div class="wrap-input100 validate-input" data-validate="Pseudo"> 
+                    	<input class="input100" type="text" name="pseudo"> <span class="bbb-input" data-placeholder="Pseudo"></span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is: a@b.c">
+						<input class="input100" type="text" name="email"> <span class="bbb-input" data-placeholder="Email"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Mot de passe">
+						<span class="btn-show-pass"> <i class="mdi mdi-eye show_password"></i> </span>
+						<input class="input100" type="password" name="password"> <span class="bbb-input" data-placeholder="Mot de passe"></span>
+					</div>
+                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+						<span class="btn-show-pass"> <i class="mdi mdi-eye show_password"></i> </span>
+						<input class="input100" type="password" name="confirm_password"> <span class="bbb-input" data-placeholder="Confirmer mot de passe"></span>
+					</div>
+                    <div class="login-container-form-btn">
+                        <div class="bb-login-form-btn">
+                            <div class="bb-form-bgbtn"></div> <button class="bb-form-btn"> S'inscrire </button>
+                        </div>
+                    </div>
+                    <div class="text-center p-t-115"> <span class="txt1"> Déjà inscrit ? </span> <a class="txt2" th:href="@{/login}"> Connexion </a> </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</html>

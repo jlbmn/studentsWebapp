@@ -24,7 +24,7 @@
     <div class="container principal mt-4">
         <div class="left_part">
             <div class="profile-image">
-                <img class="rounded-circle" th:src="@{https://i.imgur.com/t9toMAQ.jpg}" />
+                <img class="rounded-circle" th:src="${fiche.user.profilPic}" />
             </div>
             <div class="titre">
                 <h3 class="m-3" th:utext="${fiche.title}">Titre</h3>
