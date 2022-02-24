@@ -17,7 +17,12 @@
             <h2 class="text-center">Trouvez votre fiche de révision...</h2>
             <form class="form-inline" action="/results" method="post">
               <div class="input-group">
-                <input type="text" class="form-control form-control-lg rounded-pill m-1" placeholder="Entrez une matière...">
+                <input type="text" name ="field" class="form-control form-control-lg rounded-pill m-1" list="fields" autocomplete="off" placeholder="Entrez une matière...">
+                <datalist id="fields">
+                	<option th:each="fiche : ${fields}"
+                			th:value="${fiche}"
+                			th:text="${fiche}"></option>
+                </datalist>
                 <button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-search"></i></button>
               </div>
             </form>

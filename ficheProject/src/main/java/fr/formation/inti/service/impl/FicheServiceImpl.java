@@ -79,8 +79,10 @@ public class FicheServiceImpl implements FicheService{
 		String hql = "SELECT e FROM Fiche e WHERE e.field like '%"+field+"%'";
 		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
 		return query.getResultList();
-	}
+//		select count(*) from (select * from fiche where field="anglais") as tab ;
 
+	}
+	
 	
 	
 }
