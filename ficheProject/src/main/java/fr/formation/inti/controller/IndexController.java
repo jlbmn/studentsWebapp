@@ -127,11 +127,17 @@ public class IndexController {
 	
 	/**
 	 * accéder à la page fileUpload
+	 * à partir de la page user "profile.html"
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/fileUpload", method = RequestMethod.GET)
-	public String getUploadFile(Model model) {
+	@RequestMapping(value = "/fileUploadPage", method = RequestMethod.POST)
+	public String getUploadFilePage(Model model,
+			@RequestParam Integer userId) {
+		Optional<User> user = userService.findById(userId);
+		if(user.isPresent()) {
+			model.addAttribute("author", user.get());
+		}
 		return "fileUpload";
 	}
 	
@@ -143,9 +149,25 @@ public class IndexController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/fileUpload", method = RequestMethod.POST)
-	public String postUploadFile(Model model) {
-		return "fileUpload";
+	@RequestMapping(value = "/addNewFile", method = RequestMethod.POST)
+	public String postUploadFile(Model model,
+			@ModelAttribute Fiche fiche,
+			@RequestParam Integer userId) {
+		User author = userService.findById(userId).get();
+		// +1 au nombre de publication de l'auteur
+		author.setPublicationNb(author.getPublicationNb()+1);
+		
+		fiche.setUser(author);
+		fiche.setPublicationDate(new Date());
+		fiche.setUpdateDate(new Date());
+		fiche.setLike(0);
+		
+		ficheService.save(fiche);
+		
+		model.addAttribute("message", "La fiche a bien été enregistrée");
+		model.addAttribute("author", author);
+		
+		return "profile";
 	}
 	
 	/**
@@ -233,6 +255,7 @@ public class IndexController {
     		return "register";
     	}
     	
+    	user.setPublicationNb(0);
     	user.setSubscribeDate(new Date());
     	userService.save(user);
     	model.addAttribute("message", "Votre inscription est un succès !");
@@ -295,7 +318,10 @@ public class IndexController {
 	@RequestMapping(value = "/fileDelete", method = RequestMethod.GET)
 	public String getDeleteFile(Model model, @RequestParam String ficheId) {
 		if(ficheId != null) {
-			Integer id = Integer.parseInt(ficheId);		
+			Integer id = Integer.parseInt(ficheId);
+			User author = ficheService.findById(Integer.parseInt(ficheId)).get().getUser();
+			// mettre à jour le nombre de publications de l'auteur
+			author.setPublicationNb(author.getPublicationNb()-1);
 			ficheService.deleteFiche(id);
 		}
 	
@@ -333,11 +359,23 @@ public class IndexController {
 			model.addAttribute("author", author.get());
 			model.addAttribute("nbLikes", ficheService.getTotalLikes(author.get()));
 		} 
-    	log.info("--------------"+author.get().getPseudo());
+    	log.info("-------------- redirecting to "+author.get().getPseudo() +"'s page");
     	
     	return "profile";
     }   
     
+    @RequestMapping(value = "/userEdit", method = RequestMethod.POST)
+	public String editUser(Model model, @RequestParam Integer userId) {
+    	return "index";
+    }
     
+	@RequestMapping(value = "/userDelete", method = RequestMethod.POST)
+	public String deleteUser(Model model, @RequestParam Integer userId) {
+		if(userId != null) {
+			userService.deleteUser(userService.findById(userId).get());
+		}
+		model.addAttribute("message", "Le compte a été supprimé");
+		return "index";
+	}
 	
 }
