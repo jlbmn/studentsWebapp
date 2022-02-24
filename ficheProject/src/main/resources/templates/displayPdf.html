@@ -28,21 +28,18 @@
             </div>
             <div class="titre">
                 <h3 class="m-3" th:utext="${fiche.title}">Titre</h3>
-                <p class="m-3"><b><a class="auteur" href="#" th:utext="${fiche.user}">Auteur</a></b>, <span th:utext="${fiche.publicationDate}">>Date de publication</span></p><br><br>
+                <p class="m-3"><b><a class="auteur" href="#" th:utext="${fiche.user}">Auteur</a></b>, <span th:utext="${fiche.publicationDate}" >>Date de publication</span>,   <span style="font-weight: bold" th:utext="${fiche.like}" >></span><i class="bi bi-hand-thumbs-up"></i></p><br><br>
             </div>
           
             <div class="delete_edit">
-              <a href="edit?empId=${emp.empId }"
-                class="btn-sm btn-primary btn_delete_edit" data-toggle="modal"
-                data-target="#exampleModal"
-                onclick="return confirm('Etes-vous sur de voulor modifier la fiche?')"> 
-                <img class="img_delete_edit" src="svg/pencil.svg"></a> 
-              <a
-                href="edit?empId=${emp.empId }"
-                class="btn-sm btn-danger btn_delete_edit" data-toggle="modal"
-                data-target="#exampleModal"
-                onclick="return confirm('Etes-vous sur de vouloir supprimer cette fiche?')"> <img
-                class="img_delete_edit" src="svg/trash.svg"></a>
+		         <form class="edit_button" action="/fileEdit" method="get" onclick="return confirm('Etes-vous sur de voulor modifier cette fiche?')">
+						<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+			            <button type="submit" class="btn-sm btn-primary btn_delete_edit" ><img class="img_delete_edit" src="svg/pencil.svg"></button>
+			    </form>
+		         <form class="delete_button" action="/fileDelete" method="get" onclick="return confirm('Etes-vous sur de vouloir supprimer cette fiche?')">
+						<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+			            <button type="submit" class="btn-sm btn-danger btn_delete_edit" ><img class="img_delete_edit" src="svg/trash.svg"></button>
+			    </form>
             </div>
 
             <div class='embed-responsive'>
@@ -54,10 +51,13 @@
 
         <div class="d-inline-flex">
             <div class="like_button ">
-                <button class="btn btn-secondary btn_like"><i class="fa fa-thumbs-o-up"></i> J'aime</button>
+            	<form class="edit_button" action="/likeButton" method="post" >
+					<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+	                <button type="submit" class="btn btn-primary btn_like"><i class="fa fa-hand-thumbs-up"></i> J'aime</button>
+			    </form>
             </div>
             <div class="dislike_button">
-                <button class="btn btn-secondary btn_dislike"><i class="fa fa-thumbs-o-down"></i> Je n'aime pas</button>
+                <button class="btn btn-primary btn_dislike"><i class="fa fa-thumbs-o-down"></i> Je n'aime pas</button>
             </div>
 
         </div>

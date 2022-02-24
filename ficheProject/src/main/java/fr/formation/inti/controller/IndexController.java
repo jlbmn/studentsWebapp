@@ -125,7 +125,6 @@ public class IndexController {
 		return "displayPdf";
 	}
 	
-	
 	/**
 	 * accéder à la page fileUpload
 	 * @param model
@@ -135,6 +134,8 @@ public class IndexController {
 	public String getUploadFile(Model model) {
 		return "fileUpload";
 	}
+	
+	
 	
 	/**
 	 * ajouter une nouvelle fiche
@@ -211,7 +212,7 @@ public class IndexController {
         }
         return modelAndView;
     }
-    
+
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String register (Model model) {
     	return "register";
@@ -221,9 +222,9 @@ public class IndexController {
     public String postRegister (Model model, 
     		@ModelAttribute User user,
     		@RequestParam String confirm_password) {
-
-    	if(user == null) {
-    		log.info("user is null");
+      
+        if(user == null) {
+    		  log.info("user is null");
     		return "register";
     	}
     	
@@ -237,6 +238,87 @@ public class IndexController {
     	model.addAttribute("message", "Votre inscription est un succès !");
     	return "login";
     }
+
+    /**
+	 * accéder à la page fileEdit
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/fileEdit", method = RequestMethod.GET)
+	public String getEditFile(Model model, @RequestParam String ficheId) {
+		Integer id = Integer.parseInt(ficheId);		
+		Optional<Fiche> f = ficheService.findById(id);
+	
+			if(f.isPresent()) {
+				model.addAttribute("fiche", f.get());
+			}
+		return "fileEdit";
+	}
+	
+	/**
+	 * modifier une fiche
+	 * via formulaire 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/fileEdit", method = RequestMethod.POST)
+	public String postEditFile(Model model, @RequestParam String ficheId,@RequestParam String title, @RequestParam String abstractText, @RequestParam String field, @RequestParam String pdfFile) {
+		
+		System.out.println("-------------------------------------" +ficheId);
+		if(ficheId != null) {
+			Integer id = Integer.parseInt(ficheId);		
+			Optional<Fiche> f = ficheService.findById(id);
+			
+			f.get().setTitle(title);
+			f.get().setAbstractText(abstractText);
+			f.get().setField(field);
+			
+			if(!pdfFile.equals("")) {
+				f.get().setPdfFile(pdfFile);
+			}
+				
+			System.out.println("------------------------------------- 2 " +ficheId);	
+
+			ficheService.UpdateFiche(f.get());
+			
+			model.addAttribute("fiche", f.get());
+			
+		}
+		return "displayPdf";
+	}
+	
+	/**
+	 * accéder à la page fileEdit
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/fileDelete", method = RequestMethod.GET)
+	public String getDeleteFile(Model model, @RequestParam String ficheId) {
+		if(ficheId != null) {
+			Integer id = Integer.parseInt(ficheId);		
+			ficheService.deleteFiche(id);
+		}
+	
+		return "index";
+	}
+	
+	/**
+	 * aimer une fiche
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/likeButton", method = RequestMethod.POST)
+	public String postLike(Model model, @RequestParam String ficheId) {
+		
+		if(ficheId != null) {
+			Integer id = Integer.parseInt(ficheId);		
+			Optional<Fiche> f = ficheService.findById(id);
+			ficheService.likeFiche(f.get());
+			model.addAttribute("fiche", f.get());	
+		}
+		
+		return "displayPdf";
+	}
     
     @RequestMapping(value="/profile", method = RequestMethod.GET)
     public String getMyPage (Model model) {

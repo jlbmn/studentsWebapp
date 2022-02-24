@@ -568,3 +568,11 @@ a {
 	height : 13px;
 	width : 13px;
 }
+
+.edit_button{
+	float : left;
+}
+.delete_button{
+	float : right;
+	margin-left : 5px;
+}

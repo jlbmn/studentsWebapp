@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header"></div>
+<head>
+  <title>Importation</title>
+    <!-- css -->
+    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/styleAnita.css}">
+</head>
+
+<body class="body">
+
+  <div class="limit">
+    <div class="login-container">
+      <div class="bb-login">
+        <form class="bb-form validate-form" action="fileEdit" method="post"> <span class="bb-form-title p-b-26"> Importer une fiche de révision </span>
+          <span class="bb-form-title p-b-48"> <i class="mdi mdi-symfony"></i> </span>
+          <input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+
+           <label class="form-label">Titre</label>
+           <input class="form-control" type = "text" th:value="${fiche.title}" name="title" ></input><br>
+
+          <label class="form-label">Abstract</label>
+          <textarea class="form-control" rows="3" th:inline="text"  name="abstractText" >[[${fiche.abstractText}]]</textarea><br>
+
+          <label class="form-label">Matière</label>
+          <input name="field" class="form-control" type = "text" th:value="${fiche.field}" ></input>
+          <br><br>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Télécharger le fichier PDF</label>
+            <input class="form-control" type="file" id="formFile" name="pdfFile"><br>
+            <label>Fichier actuel : </label><a href="#" > [[${fiche.pdfFile}]]</a>
+          </div> 
+
+          <div class="login-container-form-btn">
+            <div class="bb-login-form-btn">
+            
+              <div class="bb-form-bgbtn"></div> <button type="submit" class="bb-form-btn"> MODIFIER </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

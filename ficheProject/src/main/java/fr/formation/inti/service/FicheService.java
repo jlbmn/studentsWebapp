@@ -20,7 +20,7 @@ public interface FicheService {
 
 	Optional<Fiche> findById(Integer id);
 	
-	Integer likeFiche(Fiche fiche);
+	void likeFiche(Fiche fiche);
 	
 	Integer dislikeFiche(Fiche fiche);
 	
