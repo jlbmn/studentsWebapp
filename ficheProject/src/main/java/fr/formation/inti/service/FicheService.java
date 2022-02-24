@@ -31,4 +31,5 @@ public interface FicheService {
 	List<Fiche> findByUser(User user);
 	
 	Integer getTotalLikes(User user);
+
 }

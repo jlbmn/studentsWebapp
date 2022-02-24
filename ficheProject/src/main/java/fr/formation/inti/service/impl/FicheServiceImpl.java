@@ -80,7 +80,7 @@ public class FicheServiceImpl implements FicheService{
 		String hql = "SELECT e FROM Fiche e WHERE e.field like '%"+field+"%'";
 		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
 		return query.getResultList();
-	}
+  }
 
 	@Override
 	public List<Fiche> findByUser(User user) {
@@ -97,8 +97,6 @@ public class FicheServiceImpl implements FicheService{
 			}
 		}
 		return nbLikes;
-	}
-
-	
+	}	
 	
 }

@@ -3,17 +3,19 @@
 <div th:replace="fragments/header :: header"></div>
 
 <head>
-    <title>Display PDF</title>
+<title>Display PDF</title>
 
-    <!-- css -->
-    <link rel="stylesheet"  th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/styleAnita.css}">
+<!-- css -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/styleAnita.css}">
 
-    <!-- Add icon library -->
-    <link rel="stylesheet" th:href="@{/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
+<!-- Add icon library -->
+<link rel="stylesheet"
+	th:href="@{/https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css}">
 
-    <!-- Add script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- Add script -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -28,14 +30,28 @@
                 <h3 class="m-3" th:utext="${fiche.title}">Titre</h3>
                 <p class="m-3"><b><a class="auteur" href="#" th:utext="${fiche.user}">Auteur</a></b>, <span th:utext="${fiche.publicationDate}">>Date de publication</span></p><br><br>
             </div>
-<hr>
+          
+            <div class="delete_edit">
+              <a href="edit?empId=${emp.empId }"
+                class="btn-sm btn-primary btn_delete_edit" data-toggle="modal"
+                data-target="#exampleModal"
+                onclick="return confirm('Etes-vous sur de voulor modifier la fiche?')"> 
+                <img class="img_delete_edit" src="svg/pencil.svg"></a> 
+              <a
+                href="edit?empId=${emp.empId }"
+                class="btn-sm btn-danger btn_delete_edit" data-toggle="modal"
+                data-target="#exampleModal"
+                onclick="return confirm('Etes-vous sur de vouloir supprimer cette fiche?')"> <img
+                class="img_delete_edit" src="svg/trash.svg"></a>
+            </div>
+
             <div class='embed-responsive'>
                 <object class="pdf" th:data="${fiche.pdfFile}" type='application/pdf'></object>
             </div>
 
         </div>
         
-<hr>
+
         <div class="d-inline-flex">
             <div class="like_button ">
                 <button class="btn btn-secondary btn_like"><i class="fa fa-thumbs-o-up"></i> J'aime</button>
@@ -96,12 +112,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
 
 </body>
 
