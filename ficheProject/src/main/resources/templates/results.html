@@ -49,10 +49,10 @@
 									<div class="col" th:utext="${fiche.abstractText}"></div>
 									<div class="col">
 
-										<button type="submit" class="btn btn-lg rounded-circle m-1"
-											style="background: #8BBAF5;">
-											<i class="bi bi-arrow-90deg-right"></i>
-										</button>
+										<form action="/displayPdf" method="post" th:action="@{/displayPdf}" th:object="${fiche}">
+											<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+			                          		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
+			                        	</form>
 
 									</div>
 								</div>

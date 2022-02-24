@@ -1,5 +1,6 @@
 package fr.formation.inti.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,6 +68,12 @@ public class IndexController {
 		List<User> users = userService.findAll();
 		model.addAttribute("authors", users);
 		
+		HashMap<User, Integer> dicoAuthorLike = new HashMap<User, Integer>();
+		for(User u : users) {
+			dicoAuthorLike.put(u, ficheService.getTotalLikes(u));
+		}
+		model.addAttribute("dicoAuthorLike", dicoAuthorLike);
+		
 		return "index";
 	}
 	
@@ -108,12 +115,15 @@ public class IndexController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/displayPdf", method = RequestMethod.GET)
+	@RequestMapping(value = "/displayPdf", method = RequestMethod.POST)
 	public String displayPdf(Model model, @ModelAttribute Fiche fiche) {
-		model.addAttribute("fiche", fiche);
-		log.info(fiche.getTitle());
+		Optional<Fiche> f = ficheService.findById(fiche.getFicheId());
+		if(f.isPresent()) {
+			model.addAttribute("fiche", f.get());
+		} 
 		return "displayPdf";
 	}
+	
 	
 	/**
 	 * accéder à la page fileUpload
@@ -143,10 +153,11 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String getLoginPage(Model model,
-			@RequestParam("message") Optional<String> message) {
+			@RequestParam("messageLogout") Optional<String> messageLogout) {
 		
 		// check if request param "message" exists
-		if(message.isPresent()) {
+		if(messageLogout.isPresent()) {
+			log.info("---------> message logout is present");
 			model.addAttribute("message", "Vous êtes bien déconnecté!");
 		}
 		
@@ -194,7 +205,7 @@ public class IndexController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
         	log.info("--------- close user session ---------");
-        	modelAndView.addObject("message", "logout");
+        	modelAndView.addObject("messageLogout", "logout");
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return modelAndView;

@@ -1,5 +1,6 @@
 package fr.formation.inti.dao;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,7 +19,9 @@ public interface FicheDao extends JpaRepository<Fiche, Integer>{
 	
 	@Query("SELECT field from Fiche u")
 	Set<String> listFields();
-	
+		
+	List<Fiche> findByUser(User user);
+
 	@Query("SELECT count(ficheId) from Fiche f where f.field =:field")
 	long countFiche(String field);
 	
