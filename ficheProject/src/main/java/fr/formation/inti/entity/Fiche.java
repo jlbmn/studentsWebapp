@@ -35,7 +35,7 @@ public class Fiche {
 	private String abstractText;
 	@Column(name = "keyword")
 	private ArrayList<String> keywords;
-	@Column(name = "like")
+	@Column(name = "likes")
 	private Integer like;
 	@Column(name = "level", nullable = false)
 	private Integer level;

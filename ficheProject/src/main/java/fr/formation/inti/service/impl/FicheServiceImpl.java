@@ -55,10 +55,9 @@ public class FicheServiceImpl implements FicheService{
 	}
 
 	@Override
-	public Integer likeFiche(Fiche fiche) {
+	public void likeFiche(Fiche fiche) {
 		Integer like = fiche.getLike()+1;
 		fiche.setLike(like);
-		return like;
 	}
 
 	@Override
