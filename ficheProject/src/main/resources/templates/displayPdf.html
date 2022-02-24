@@ -22,18 +22,20 @@
     <div class="container principal mt-4">
         <div class="left_part">
             <div class="profile-image">
-                <img class="rounded-circle" src="https://i.imgur.com/t9toMAQ.jpg">
+                <img class="rounded-circle" th:src="@{https://i.imgur.com/t9toMAQ.jpg}" />
             </div>
             <div class="titre">
-                <h3>Titre</h3>
-                <p><b><a class="auteur" href="#">Auteur</a></b>, Date de publication</p><br><br>
+                <h3 class="m-3" th:utext="${fiche.title}">Titre</h3>
+                <p class="m-3"><b><a class="auteur" href="#" th:utext="${fiche.user}">Auteur</a></b>, <span th:utext="${fiche.publicationDate}">>Date de publication</span></p><br><br>
             </div>
-
+<hr>
             <div class='embed-responsive'>
-                <object class="pdf" data='media/doc.pdf' type='application/pdf'></object>
+                <object class="pdf" th:data="${fiche.pdfFile}" type='application/pdf'></object>
             </div>
-        </div>
 
+        </div>
+        
+<hr>
         <div class="d-inline-flex">
             <div class="like_button ">
                 <button class="btn btn-secondary btn_like"><i class="fa fa-thumbs-o-up"></i> J'aime</button>

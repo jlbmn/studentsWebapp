@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import fr.formation.inti.entity.Fiche;
+import fr.formation.inti.entity.User;
 
 public interface FicheService {
 
@@ -26,4 +27,8 @@ public interface FicheService {
 	List<Fiche> findByAuthor(String author);
 	
 	List<Fiche> findByField(String field);
+	
+	List<Fiche> findByUser(User user);
+	
+	Integer getTotalLikes(User user);
 }

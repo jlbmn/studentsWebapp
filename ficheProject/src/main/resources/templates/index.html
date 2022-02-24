@@ -70,8 +70,9 @@
 <!-- 						</div> -->
 						
                         </div>
-                        <div class="col">
-							<form action="/displayPdf" method="get" th:object="${fiche}">
+                        <div class="col" >
+							<form action="/displayPdf" method="post" th:action="@{/displayPdf}" th:object="${fiche}">
+								<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
                           		<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;" ><i class="bi bi-arrow-90deg-right"></i></button>
                         	</form>
 						</div>
@@ -92,7 +93,7 @@
                         <div class="row align-items-center text-center">
                           <div class="col"><span th:utext="${author.profilPic}"></span><button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-person-circle"></i></button></div>
                           <div class="col" th:utext="${author.pseudo}"></div>
-                          <div class="col"><span>(nb likes)</span> <i class="bi bi-hand-thumbs-up"></i></div>
+                          <div class="col"><span th:utext="${dicoAuthorLike.get(author)}"></span> <i class="bi bi-hand-thumbs-up"></i></div>
                           <div class="col"><span th:utext="${author.publicationNb}"></span> fiches publiées</div>
                           <div class="col">
                           	<button type="submit" class="btn btn-lg rounded-circle m-1" style="background: #8BBAF5;"><i class="bi bi-arrow-90deg-right"></i></button>

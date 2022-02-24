@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import fr.formation.inti.dao.FicheDao;
 import fr.formation.inti.entity.Fiche;
+import fr.formation.inti.entity.User;
 import fr.formation.inti.service.FicheService;
 
 @Service
@@ -79,6 +80,23 @@ public class FicheServiceImpl implements FicheService{
 		String hql = "SELECT e FROM Fiche e WHERE e.field like '%"+field+"%'";
 		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
 		return query.getResultList();
+	}
+
+	@Override
+	public List<Fiche> findByUser(User user) {
+		return ficheDao.findByUser(user);
+	}
+
+	@Override
+	public Integer getTotalLikes(User user) {
+		List<Fiche> fiches = findByUser(user);
+		Integer nbLikes = 0;
+		if(!fiches.isEmpty()) {
+			for(Fiche f:fiches) {
+				nbLikes += f.getLike();
+			}
+		}
+		return nbLikes;
 	}
 
 	
