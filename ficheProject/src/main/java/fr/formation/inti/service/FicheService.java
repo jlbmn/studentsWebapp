@@ -26,4 +26,6 @@ public interface FicheService {
 	List<Fiche> findByAuthor(String author);
 	
 	List<Fiche> findByField(String field);
+
+	
 }

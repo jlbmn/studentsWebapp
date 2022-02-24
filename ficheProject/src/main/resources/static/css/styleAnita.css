@@ -125,7 +125,7 @@ a.auteur:hover{
 }
 
 .btn {
-    background-color: RoyalBlue;
+/*     background-color: RoyalBlue; */
     border: none; /* Remove borders */
     color: white; /* White text */
     padding: 12px 16px; /* Some padding */
@@ -134,7 +134,7 @@ a.auteur:hover{
   }
   
   /* Darker background on mouse-over */
-  .btn:hover {
+  .btn-primary:hover {
     background-color: RoyalBlue;
   }
 
@@ -557,4 +557,14 @@ a {
 .show_password {
     color: black !important;
     margin-right: 8px
+}
+
+.delete_edit{
+	float : right;
+	margin-top : 3%;
+}
+
+.img_delete_edit{
+	height : 13px;
+	width : 13px;
 }

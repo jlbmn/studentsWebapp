@@ -59,6 +59,9 @@ public class IndexController {
 			model.addAttribute("message", message.get());
 		}
 		
+		Set<String> fields = ficheDao.listFields();
+		model.addAttribute("fields", fields);
+		
 		List<Fiche> fiches = ficheService.findAll();
 		model.addAttribute("fiches", fiches);
 		List<User> users = userService.findAll();
@@ -84,37 +87,21 @@ public class IndexController {
 	 * @return
 	 */
 	@RequestMapping(value = "/results", method = RequestMethod.POST)
-	public String postResults(Model model) {
-		List<Fiche> list = ficheService.findAll();
-		Set<User> listAuthor = ficheDao.listAuthors();
-		Set<String> listFields = ficheDao.listFields();
-		model.addAttribute("list", list);
-		model.addAttribute("listAuthors", listAuthor);
-		model.addAttribute("listFields", listFields);
-		return "results";
-	}
-	
-	@RequestMapping(value= "/listFilteredAuthor", method=RequestMethod.POST)
-	public String listCustomerByAuthor(Model model,@RequestParam String author, @RequestParam String field) {
-		
-		
-//		List<Fiche> listAll= ficheService.findAll();
-		List<Fiche> listAuthor = ficheService.findByAuthor(author);
-//		List<Fiche> listField = ficheService.findByField(field);
-		model.addAttribute("list", listAuthor);
-//		model.addAttribute("list", listField);
-		
-		return "results";
-	}
-	
-	//mettre un bouton pour le filtrage par matiere
-	@RequestMapping(value= "/listFilteredField", method=RequestMethod.POST)
-	public String listCustomerByField(Model model,@RequestParam String field) {
-
+	public String postResults(Model model, @RequestParam String field) {
 		List<Fiche> list = ficheService.findByField(field);
 		model.addAttribute("list", list);
+		long nb = ficheDao.countFiche(field);
+		String message ="";
+		if(nb==1) {
+			message = nb + " fiche a été trouvée pour la matière " + field;
+		}else if(nb>1) {
+			message = nb + " fiches ont été trouvées pour la matière " + field;
+		}
+		model.addAttribute("messageResults",message);
+		
 		return "results";
 	}
+	
 	
 	/**
 	 * afficher la page de la fiche sélectionnée
