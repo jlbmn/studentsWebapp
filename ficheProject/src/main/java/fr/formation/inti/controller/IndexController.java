@@ -1,5 +1,6 @@
 package fr.formation.inti.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -210,6 +211,51 @@ public class IndexController {
         }
         return modelAndView;
     }
+    
+    @RequestMapping(value="/register", method = RequestMethod.GET)
+    public String register (Model model) {
+    	return "register";
+    }
+    
+    @RequestMapping(value="/register", method = RequestMethod.POST)
+    public String postRegister (Model model, 
+    		@ModelAttribute User user,
+    		@RequestParam String confirm_password) {
 
+    	if(user == null) {
+    		log.info("user is null");
+    		return "register";
+    	}
+    	
+    	if(!user.getPassword().equals(confirm_password)){
+    		log.info("passwords are different");
+    		return "register";
+    	}
+    	
+    	user.setSubscribeDate(new Date());
+    	userService.save(user);
+    	model.addAttribute("message", "Votre inscription est un succès !");
+    	return "login";
+    }
+    
+    @RequestMapping(value="/profile", method = RequestMethod.GET)
+    public String getMyPage (Model model) {
+		return "profile";
+    }
+    
+    @RequestMapping(value="/profile", method = RequestMethod.POST)
+    public String getAuthorProfile (Model model, 
+    		@ModelAttribute User user ) {
+    	Optional<User> author = userService.findById(user.getUserId());
+		if(author.isPresent()) {
+			model.addAttribute("author", author.get());
+			model.addAttribute("nbLikes", ficheService.getTotalLikes(author.get()));
+		} 
+    	log.info("--------------"+author.get().getPseudo());
+    	
+    	return "profile";
+    }   
+    
+    
 	
 }
