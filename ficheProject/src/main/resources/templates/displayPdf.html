@@ -57,7 +57,10 @@
 			    </form>
             </div>
             <div class="dislike_button">
-                <button class="btn btn-primary btn_dislike"><i class="fa fa-thumbs-o-down"></i> Je n'aime pas</button>
+            <form class="edit_button" action="/dislikeButton" method="post" >
+					<input type="hidden" th:value="${fiche.ficheId}" name="ficheId"/>
+	                <button type="submit" class="btn btn-primary btn_dislike"><i class="fa fa-thumbs-down"></i> Je n'aime pas</button>
+			    </form>
             </div>
 
         </div>

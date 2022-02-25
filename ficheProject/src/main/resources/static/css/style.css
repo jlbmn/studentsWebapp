@@ -26,7 +26,7 @@ i#home-bi-house {
 header.image-header{
     height:7em;
     color:white;
-    background-image: url('https://images.pexels.com/photos/1629212/pexels-photo-1629212.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+    background-image: url("../../media/background.png");
     border: 1px solid transparent;
 }
 

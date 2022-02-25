@@ -55,19 +55,6 @@ public class FicheServiceImpl implements FicheService{
 	}
 
 	@Override
-	public void likeFiche(Fiche fiche) {
-		Integer like = fiche.getLike()+1;
-		fiche.setLike(like);
-	}
-
-	@Override
-	public Integer dislikeFiche(Fiche fiche) {
-		Integer like = fiche.getLike()-1;
-		fiche.setLike(like);
-		return like;
-	}
-
-	@Override
 	public List<Fiche> findByAuthor(String author) {
 		String hql = "SELECT e FROM Fiche e WHERE e.user.pseudo like '%"+author+"%'";
 		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
@@ -80,6 +67,15 @@ public class FicheServiceImpl implements FicheService{
 		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
 		return query.getResultList();
   }
+	
+	@Override
+	public List<Fiche> findByTitle(String title) {
+		String hql = "SELECT e FROM Fiche e WHERE e.title like '%"+title+"%'";
+		TypedQuery<Fiche> query = entityManager.createQuery(hql, Fiche.class);
+		return query.getResultList();
+  }
+	
+	
 
 	@Override
 	public List<Fiche> findByUser(User user) {

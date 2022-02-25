@@ -20,10 +20,6 @@ public interface FicheService {
 
 	Optional<Fiche> findById(Integer id);
 	
-	void likeFiche(Fiche fiche);
-	
-	Integer dislikeFiche(Fiche fiche);
-	
 	List<Fiche> findByAuthor(String author);
 	
 	List<Fiche> findByField(String field);
@@ -31,5 +27,7 @@ public interface FicheService {
 	List<Fiche> findByUser(User user);
 	
 	Integer getTotalLikes(User user);
+	
+	List<Fiche> findByTitle(String title);
 
 }
