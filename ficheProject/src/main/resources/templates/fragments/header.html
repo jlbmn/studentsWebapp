@@ -22,7 +22,7 @@
     <!-- image header -->
     <header class="image-header">
         <div class="center-block mt-auto text-center">
-            <h3 class="m-5">PROJET FICHES POUR LES ETUDIANTS</h3>
+            <h3 class="m-5" style="font-weight:bold">PARTAGE TA FICHE</h3>
         </div>
     </header>
     
@@ -37,10 +37,10 @@
         <!-- right align -->
         <div class="nav justify-content-end me-3">
             <!-- search -->
-            <form class="form-inline">
+            <form class="form-inline" action="/search" method="post">
                 <div class="input-group input-group-lg ">
-                    <input id="#search" type="text" class="form-control" placeholder="Search..." aria-label="Search">
-                    <button class="btn btn-primary btn-lg" type="button">
+                    <input name="search" id="#search" type="text" class="form-control" placeholder="Search..." aria-label="Search">
+                    <button class="btn btn-primary btn-lg" type="submit">
                         <i class="bi bi-search"></i>
                     </button>
                 </div>
