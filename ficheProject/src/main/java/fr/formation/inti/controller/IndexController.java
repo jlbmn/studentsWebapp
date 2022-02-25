@@ -20,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -157,6 +158,7 @@ public class IndexController {
 		// +1 au nombre de publication de l'auteur
 		author.setPublicationNb(author.getPublicationNb()+1);
 		
+		fiche.setPdfFile("media/civilisation_anglosaxonne.pdf");
 		fiche.setUser(author);
 		fiche.setPublicationDate(new Date());
 		fiche.setUpdateDate(new Date());
@@ -364,11 +366,59 @@ public class IndexController {
     	return "profile";
     }   
     
-    @RequestMapping(value = "/userEdit", method = RequestMethod.POST)
-	public String editUser(Model model, @RequestParam Integer userId) {
-    	return "index";
+    
+    @RequestMapping(value = "/userEditPage", method = RequestMethod.POST)
+	public String getUserEditPage(Model model, 
+    		@RequestParam Integer userId) {
+    	log.info("------> in userEditPage post");
+    	Optional<User> u = userService.findById(userId);
+		if(u.isPresent()) {
+			model.addAttribute("user", u.get());
+		}
+    	return "userEdit";
     }
     
+    @RequestMapping(value = "/userEdit", method = RequestMethod.POST)
+	public String editUser(Model model, 
+			@ModelAttribute User user,
+			@RequestParam String confirm_password,
+			@RequestParam Integer userId) {
+    	
+    	log.info("------> in userEdit post");
+    	
+    	if(user == null || 
+    			userId == null || 
+    			userService.findById(userId) == null) {
+  		  return "index";
+	  	}
+	  	
+	  	if(!user.getPassword().equals(confirm_password)){
+	  		log.info("passwords are different");
+	  		return "index";
+	  	}
+	  	
+	  	User userModif = userService.findById(userId).get();
+	  	
+	  	
+	  	userModif.setEmail(user.getEmail());
+	  	userModif.setPassword(user.getPassword());
+	  	userModif.setPseudo(user.getPseudo());
+	  	
+	  	userService.UpdateUser(userModif);
+	  	
+	  	model.addAttribute("message", "Les informations ont bien été modifiées");
+	  	model.addAttribute("author", userModif);
+    	return "profile";
+    }
+    
+    
+    
+    /**
+     * supprimer un utilisateur 
+     * @param model
+     * @param userId
+     * @return
+     */
 	@RequestMapping(value = "/userDelete", method = RequestMethod.POST)
 	public String deleteUser(Model model, @RequestParam Integer userId) {
 		if(userId != null) {

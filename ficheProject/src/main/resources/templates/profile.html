@@ -19,7 +19,7 @@
             <h1 class="user my-3" th:utext="${author.pseudo}">Utilisateur</h1>
             
             <div class="delete_edit">
-		         <form class="edit_button" action="/userEdit" method="post" onclick="return confirm('Souhaitez-vous modifier votre profil ?')">
+		         <form class="edit_button" th:action="@{/userEditPage}" method="post" onclick="return confirm('Souhaitez-vous modifier votre profil ?')">
 						<input type="hidden" th:value="${author.userId}" name="userId"/>
 			            <button type="submit" class="btn-sm btn-primary btn_delete_edit" ><img class="img_delete_edit" src="svg/pencil.svg"></button>
 			    </form>
