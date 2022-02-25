@@ -20,4 +20,6 @@ public interface UserService {
 	Optional<User> findById(Integer id);
 	
 	Optional<User> findByEmailAndPassword(String email, String password);
+	
+	List<User> findByAuthor(String author);
 }

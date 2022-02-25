@@ -264,7 +264,6 @@ public class IndexController {
 	@RequestMapping(value = "/fileEdit", method = RequestMethod.POST)
 	public String postEditFile(Model model, @RequestParam String ficheId,@RequestParam String title, @RequestParam String abstractText, @RequestParam String field, @RequestParam String pdfFile) {
 		
-		System.out.println("-------------------------------------" +ficheId);
 		if(ficheId != null) {
 			Integer id = Integer.parseInt(ficheId);		
 			Optional<Fiche> f = ficheService.findById(id);
@@ -274,10 +273,8 @@ public class IndexController {
 			f.get().setField(field);
 			
 			if(!pdfFile.equals("")) {
-				f.get().setPdfFile(pdfFile);
-			}
-				
-			System.out.println("------------------------------------- 2 " +ficheId);	
+				f.get().setPdfFile("media/"+pdfFile);
+			}	
 
 			ficheService.UpdateFiche(f.get());
 			
@@ -311,10 +308,32 @@ public class IndexController {
 	public String postLike(Model model, @RequestParam String ficheId) {
 		
 		if(ficheId != null) {
-			Integer id = Integer.parseInt(ficheId);		
-			Optional<Fiche> f = ficheService.findById(id);
-			ficheService.likeFiche(f.get());
-			model.addAttribute("fiche", f.get());	
+			Integer id = Integer.parseInt(ficheId);	
+			Optional<Fiche> fiche = ficheService.findById(id);
+			ficheDao.likeFiche(fiche.get().getLike()+1, fiche.get().getFicheId());
+			model.addAttribute("fiche", fiche.get());		
+		}
+		
+		return "displayPdf";
+	}
+	
+	/**
+	 * aimer une fiche
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/dislikeButton", method = RequestMethod.POST)
+	public String postDislike(Model model, @RequestParam String ficheId) {
+		
+		if(ficheId != null) {
+			Integer id = Integer.parseInt(ficheId);	
+			Optional<Fiche> fiche = ficheService.findById(id);
+			if(fiche.get().getLike()>0) {
+				ficheDao.likeFiche(fiche.get().getLike()-1, fiche.get().getFicheId());				
+			}else {
+				ficheDao.likeFiche(fiche.get().getLike(), fiche.get().getFicheId());								
+			}
+			model.addAttribute("fiche", fiche.get());		
 		}
 		
 		return "displayPdf";
@@ -337,6 +356,48 @@ public class IndexController {
     	
     	return "profile";
     }   
+    
+    
+    /**
+	 * aimer une fiche
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String getSearchBar(Model model) {
+		
+		
+		return "search";
+	} 
+	
+    /**
+	 * aimer une fiche
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	public String postSearchBar(Model model, @RequestParam String search) {
+		List<Fiche> listFiche = ficheService.findByField(search);
+		model.addAttribute("listFiche", listFiche);
+		
+		List<User> listUser = userService.findByAuthor(search);
+		model.addAttribute("listUser", listUser);
+		
+		HashMap<User, Integer> dicoAuthorLike = new HashMap<User, Integer>();
+		for(User u : listUser) {
+			dicoAuthorLike.put(u, ficheService.getTotalLikes(u));
+		}
+		model.addAttribute("dicoAuthorLike", dicoAuthorLike);
+		
+		List<Fiche> listTitle = ficheService.findByTitle(search);
+		model.addAttribute("listTitle", listTitle);
+
+
+		String message ="Résultat pour '"+search+"'";
+		model.addAttribute("messageResults",message);
+		
+		return "search";
+	}
     
     
 	

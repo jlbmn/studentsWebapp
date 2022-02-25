@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="fragments/header :: header"></div>
+<head>
+<title>Résultats</title>
+<!-- link to our customized CSS stylesheet -->
+<link th:href="@{/css/style.css}" rel="stylesheet">
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<script src="script/script.js"></script>
+</head>
+
+<div class="container">
+	<div class="m-5">
+
+		<div class="d-flex justify-content-between mx-2">
+			<h3 th:utext="${messageResults}"></h3>
+			<div class="dropdown">
+				<button type="button" class="btn btn-primary dropdown-toggle"
+					data-bs-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">
+					Filtrer la recherche <i class="bi bi-funnel text-white"></i>
+				</button>
+				<form class="dropdown-menu p-4">
+					<input class="form-control" id="myInput" type="text"
+						placeholder="Search..">
+				</form>
+			</div>
+		</div>
+
+		<div class="tab-content m-2">
+			<div class="tab-pane fade show active" role="tabpanel"
+				aria-labelledby="home-tab">
+				<ul class="d-grid gap-3" id="myList">
+					<li class="module-wrap-gradient" th:each="fiche:${listFiche}">
+						<div class="pb-1">
+							<div class="grid bg-light-blue">
+								<div class="row align-items-center text-center">
+
+									<div class="col" th:utext="${fiche.title}"></div>
+									<div class="col" th:utext="${fiche.field}"></div>
+									<div class="col" th:utext="${fiche.publicationDate}"></div>
+									<div class="col">
+										<span th:utext="${fiche.like}"></span> <i
+											class="bi bi-hand-thumbs-up"></i>
+									</div>
+									<div class="col" th:utext="${fiche.user}"></div>
+									<div class="col" th:utext="${fiche.abstractText}"></div>
+									<div class="col">
+
+										<form action="/displayPdf" method="post"
+											th:action="@{/displayPdf}" th:object="${fiche}">
+											<input type="hidden" th:value="${fiche.ficheId}"
+												name="ficheId" />
+											<button type="submit" class="btn btn-lg rounded-circle m-1"
+												style="background: #8BBAF5;">
+												<i class="bi bi-arrow-90deg-right"></i>
+											</button>
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="tab-content m-2">
+			<div class="tab-pane fade show active" role="tabpanel"
+				aria-labelledby="home-tab">
+				<ul class="d-grid gap-3" id="myList">
+					<li class="module-wrap-gradient" th:each="author:${listUser}">
+						<div class="pb-1">
+							<div class="grid bg-light-blue">
+								<div class="row align-items-center text-center">
+
+									<div class="col">
+										<span><img class="avatar-img"
+											th:src="${author.profilPic}"></span>
+									</div>
+									<div class="col" th:utext="${author.pseudo}"></div>
+									<div class="col">
+										<span th:utext="${dicoAuthorLike.get(author)}"></span> <i
+											class="bi bi-hand-thumbs-up"></i>
+									</div>
+									<div class="col">
+										<span th:utext="${author.publicationNb}"></span> fiches
+										publiées
+									</div>
+									<div class="col">
+										<form action="/profile" method="post" th:action="@{/profile}"
+											th:object="${user}">
+											<input type="hidden" th:value="${author.userId}"
+												name="userId" />
+											<button type="submit" class="btn btn-lg rounded-circle m-1"
+												style="background: #8BBAF5;">
+												<i class="bi bi-arrow-90deg-right"></i>
+											</button>
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		
+		<div class="tab-content m-2">
+			<div class="tab-pane fade show active" role="tabpanel"
+				aria-labelledby="home-tab">
+				<ul class="d-grid gap-3" id="myList">
+					<li class="module-wrap-gradient" th:each="fiche:${listTitle}">
+						<div class="pb-1">
+							<div class="grid bg-light-blue">
+								<div class="row align-items-center text-center">
+
+									<div class="col" th:utext="${fiche.title}"></div>
+									<div class="col" th:utext="${fiche.field}"></div>
+									<div class="col" th:utext="${fiche.publicationDate}"></div>
+									<div class="col">
+										<span th:utext="${fiche.like}"></span> <i
+											class="bi bi-hand-thumbs-up"></i>
+									</div>
+									<div class="col" th:utext="${fiche.user}"></div>
+									<div class="col" th:utext="${fiche.abstractText}"></div>
+									<div class="col">
+
+										<form action="/displayPdf" method="post"
+											th:action="@{/displayPdf}" th:object="${fiche}">
+											<input type="hidden" th:value="${fiche.ficheId}"
+												name="ficheId" />
+											<button type="submit" class="btn btn-lg rounded-circle m-1"
+												style="background: #8BBAF5;">
+												<i class="bi bi-arrow-90deg-right"></i>
+											</button>
+										</form>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+
+	</div>
+
+
+</div>
+
+
+
+</html>
