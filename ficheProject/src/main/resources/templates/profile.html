@@ -18,8 +18,25 @@
             </figure>
             <h1 class="user my-3" th:utext="${author.pseudo}">Utilisateur</h1>
             
+            <div class="delete_edit">
+		         <form class="edit_button" th:action="@{/userEditPage}" method="post" onclick="return confirm('Souhaitez-vous modifier votre profil ?')">
+						<input type="hidden" th:value="${author.userId}" name="userId"/>
+			            <button type="submit" class="btn-sm btn-primary btn_delete_edit" ><img class="img_delete_edit" src="svg/pencil.svg"></button>
+			    </form>
+		         <form class="delete_button" action="/userDelete" method="post" onclick="return confirm('Etes-vous sûr de vouloir supprimer votre compte ?')">
+						<input type="hidden" th:value="${author.userId}" name="userId"/>
+			            <button type="submit" class="btn-sm btn-danger btn_delete_edit" ><img class="img_delete_edit" src="svg/trash.svg"></button>
+			    </form>
+            </div>
+
+            
             <label for="avatar" class="avatar my-3">Choisissez une photo de profil:</label>
             <input type="file" class="file">
+           
+            <form method="post" th:action="@{/fileUploadPage}" th:object="${user}">
+          		<input type="hidden" th:value="${author.userId}" name="userId"/>
+          		<button type="submit" class="btn btn-lg rounded m-1" style="background: #8BBAF5;"><i class="bi bi-plus-circle"></i> Ajouter une fiche </button>
+          	</form>	
             
             <ul class="list-group my-3 mx-auto">
                 <li class="list-group-item text-right"><span class="pull-left"><strong>Score de fiches : </strong></span> <span th:utext="${nbLikes}">0</span></li>
@@ -53,6 +70,7 @@
 				
 		<!-- nav with javascript behavior -->
           <div class="rounded" >
+          	<h3 th:utext="${message}" class="text-primary m-2 text-center"></h3>
 			<h3 class="text-center m-2">Top des fiches</h3>
 
             <div class="tab-content p-2">

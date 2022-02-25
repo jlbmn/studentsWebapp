@@ -13,25 +13,33 @@
   <div class="limit">
     <div class="login-container">
       <div class="bb-login">
-        <form class="bb-form validate-form" action="/fileUpload" method="post"> <span class="bb-form-title p-b-26"> Importer une fiche de révision </span>
+        <form class="bb-form validate-form" th:action="@{/addNewFile}" method="post" th:object="${fiche}"> <span class="bb-form-title p-b-26"> Importer une fiche de révision </span>
           <span class="bb-form-title p-b-48"> <i class="mdi mdi-symfony"></i> </span>
-         <!-- <div class="wrap-input100 validate-input"> <input class="input100" type="text" name="titre"> <span
-              class="bbb-input" data-placeholder="Titre"></span> </div>-->
-
-              <label class="form-label">Titre</label>
-              <input class="form-control" type = "text" ></input><br>
+          
+          <input type="hidden" th:value="${author.userId}" name="userId"/>
+          
+          <label class="form-label">Titre</label>
+          <input class="form-control" type = "text" name = "title"></input><br>
 
           <label class="form-label">Abstract</label>
-          <textarea class="form-control" rows="3"></textarea><br>
+          <textarea class="form-control" rows="3" name = "abstractText"></textarea><br>
 
           <label class="form-label">Matière</label>
-          <input name="field" class="form-control" type = "text" ></input>
-          <br><br>
-
+          <input class="form-control" type = "text" name = "field"></input><br>
+          
+          <label class="form-label">Niveau d'études</label>
+          <select name="level" class="form-control">
+            <option value="1">Bac+1</option>
+            <option value="2">Bac+2</option>
+            <option value="3">Bac+3</option>
+            <option value="4">Bac+4</option>
+            <option value="5">Bac+5</option>
+            <option value="6">>Bac+5</option>
+          </select><br>
 
           <div class="mb-3">
             <label for="formFile" class="form-label">Télécharger le fichier PDF</label>
-            <input class="form-control" type="file" id="formFile"><br>
+            <input class="form-control" type="file" id="formFile" name = "pdfFile"><br>
           </div>
 
           <div class="login-container-form-btn">
